@@ -1,7 +1,26 @@
 import React from "react";
+import {ChakraProvider} from "@chakra-ui/react";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {Home} from "./page/Home.jsx";
+import {BoardWrite} from "./page/board/BoardWrite.jsx";
+
+
+const router = createBrowserRouter([
+  {path: "/",
+
+    children: [
+      { index: true, element: <Home /> },
+      {path:"write", element: < BoardWrite/>}
+    ]},
+])
+
 
 function App(props) {
-  return <div></div>;
+  return (
+    <ChakraProvider>
+      <RouterProvider router={router}/>
+    </ChakraProvider>
+  );
 }
 
 export default App;
