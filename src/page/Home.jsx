@@ -1,15 +1,15 @@
-import {AspectRatio, Box, Divider, Flex, Heading, Image, Text, VStack} from "@chakra-ui/react";
+import { AspectRatio, Box, Divider, Flex, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import {Outlet} from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {faStar} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Navbar} from "../component/Navbar.jsx";
-
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Navbar } from "../component/Navbar.jsx";
 
 export function Home() {
+  const navigate = useNavigate();
 
   // Dummy data for movies
   const movies = [
@@ -68,7 +68,7 @@ export function Home() {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -85,27 +85,26 @@ export function Home() {
   };
 
   return (
-    <Box>
-      <Navbar>
-      </Navbar>
-      <Box>
-        <Divider />
+    <Box bg="gray.900" color="white" minH="100vh">
+      <Navbar />
+      <Box p={8}>
+        <Divider borderColor="gray.700" />
         <VStack spacing={8} my={8}>
           <Box w="full">
-            <Heading as="h2" size="lg" mb={5}>
-              Popular Movies
+            <Heading as="h2" size="lg" mb={5} color="white">
+              오늘의 인기영화
             </Heading>
             <Slider {...settings}>
               {movies.map((movie) => (
-                <Box key={movie.id} p={2} onClick={() => navigate(`/movie/${movie.id}`)}>
+                <Box key={movie.id} p={2} cursor="pointer" onClick={() => navigate(`/movie/${movie.id}`)}>
                   <AspectRatio ratio={2 / 3}>
-                    <Image src={movie.posterUrl} alt={movie.title} objectFit="cover" />
+                    <Image src={movie.posterUrl} alt={movie.title} objectFit="cover" borderRadius="md" />
                   </AspectRatio>
-                  <Box mt={2}>
-                    <Heading as="h3" size="md">
+                  <Box mt={2} textAlign="center">
+                    <Heading as="h3" size="md" color="white">
                       {movie.title}
                     </Heading>
-                    <Flex align="center">
+                    <Flex justifyContent="center" alignItems="center">
                       <FontAwesomeIcon icon={faStar} color="gold" />
                       <Text ml={1}>{movie.rating}</Text>
                     </Flex>
@@ -115,7 +114,7 @@ export function Home() {
             </Slider>
           </Box>
         </VStack>
-        <Divider />
+        <Divider borderColor="gray.700" />
         <Box mt={8}>
           {/* You can add more content here if needed */}
         </Box>
@@ -124,3 +123,5 @@ export function Home() {
     </Box>
   );
 }
+
+export default Home;
