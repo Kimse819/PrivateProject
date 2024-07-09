@@ -30,7 +30,7 @@ export function Navbar() {
           _hover={{ bgColor: "gray.600" }}
           p={2}
           borderRadius="md"
-          color={"red"}
+          color={"deeppink"}
           fontSize={"23"}
         >
           Tracker
