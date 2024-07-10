@@ -74,7 +74,7 @@ export function BoardWrite() {
               color="white"
             />
           </FormControl>
-          <Button colorScheme="blue" onClick={handleSaveClick}>
+          <Button colorScheme="pink" onClick={handleSaveClick}>
             저장
           </Button>
         </VStack>

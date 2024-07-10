@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Divider, Flex, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import { AspectRatio, Box, Divider, Flex, Heading, Image, Text, VStack, Button } from "@chakra-ui/react";
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
@@ -84,43 +84,81 @@ export function Home() {
     ],
   };
 
+  const featuredMovie = {
+    title: "Dune",
+    posterUrl: "https://via.placeholder.com/800x400",
+    description: "A mythic and emotionally charged hero's journey, 'Dune' tells the story of Paul Atreides...",
+  };
+
   return (
-    <Box bg="gray.900" color="white" minH="100vh">
-      <Navbar />
-      <Box p={8}>
-        <Divider borderColor="gray.700" />
-        <VStack spacing={8} my={8}>
-          <Box w="full">
-            <Heading as="h2" size="lg" mb={5} color="white">
-              오늘의 인기영화
-            </Heading>
-            <Slider {...settings}>
-              {movies.map((movie) => (
-                <Box key={movie.id} p={2} cursor="pointer" onClick={() => navigate(`/movie/${movie.id}`)}>
-                  <AspectRatio ratio={2 / 3}>
-                    <Image src={movie.posterUrl} alt={movie.title} objectFit="cover" borderRadius="md" />
-                  </AspectRatio>
-                  <Box mt={2} textAlign="center">
-                    <Heading as="h3" size="md" color="white">
-                      {movie.title}
-                    </Heading>
-                    <Flex justifyContent="center" alignItems="center">
-                      <FontAwesomeIcon icon={faStar} color="gold" />
-                      <Text ml={1}>{movie.rating}</Text>
-                    </Flex>
-                  </Box>
-                </Box>
-              ))}
-            </Slider>
+      <Box bg="gray.900" color="white" minH="100vh">
+        <Navbar />
+        <Box p={8}>
+          {/* Featured Movie Banner */}
+          <Box mb={10} position="relative" onClick={() => navigate(`/movie/${featuredMovie.title}`)}>
+            <AspectRatio ratio={16 / 9}>
+              <Image src={featuredMovie.posterUrl} alt={featuredMovie.title} objectFit="cover" borderRadius="md" />
+            </AspectRatio>
+            <Box position="absolute" bottom="10px" left="10px" bg="rgba(0, 0, 0, 0.6)" p={4} borderRadius="md">
+              <Heading as="h1" size="xl">{featuredMovie.title}</Heading>
+              <Text mt={2}>{featuredMovie.description}</Text>
+            </Box>
           </Box>
-        </VStack>
-        <Divider borderColor="gray.700" />
-        <Box mt={8}>
-          {/* You can add more content here if needed */}
+
+          <Divider borderColor="gray.700" />
+          <VStack spacing={8} my={8}>
+            {/* Popular Movies */}
+            <Box w="full">
+              <Heading as="h2" size="lg" mb={5} color="white">
+                오늘의 인기영화
+              </Heading>
+              <Slider {...settings}>
+                {movies.map((movie) => (
+                    <Box key={movie.id} p={2} cursor="pointer" onClick={() => navigate(`/movie/${movie.id}`)}>
+                      <AspectRatio ratio={2 / 3}>
+                        <Image src={movie.posterUrl} alt={movie.title} objectFit="cover" borderRadius="md" />
+                      </AspectRatio>
+                      <Box mt={2} textAlign="center">
+                        <Heading as="h3" size="md" color="white">
+                          {movie.title}
+                        </Heading>
+                        <Flex justifyContent="center" alignItems="center">
+                          <FontAwesomeIcon icon={faStar} color="gold" />
+                          <Text ml={1}>{movie.rating}</Text>
+                        </Flex>
+                      </Box>
+                    </Box>
+                ))}
+              </Slider>
+            </Box>
+
+            {/* Categories */}
+            <Box w="full">
+              <Heading as="h2" size="lg" mb={5} color="white">
+                카테고리별 영화
+              </Heading>
+              <Flex wrap="wrap" justify="space-around">
+                <Button onClick={() => navigate("/category/action")}>액션</Button>
+                <Button onClick={() => navigate("/category/comedy")}>코미디</Button>
+                <Button onClick={() => navigate("/category/drama")}>드라마</Button>
+                <Button onClick={() => navigate("/category/scifi")}>SF</Button>
+                <Button onClick={() => navigate("/category/horror")}>호러</Button>
+              </Flex>
+            </Box>
+          </VStack>
+
+          <Divider borderColor="gray.700" />
+          <Box mt={8}>
+            {/* You can add more content here if needed */}
+          </Box>
+          <Outlet />
         </Box>
-        <Outlet />
+
+        {/* Footer */}
+        <Box as="footer" py={4} textAlign="center" bg="gray.800" color="gray.500">
+          <Text>&copy; 2024 Movie Recommendation. All rights reserved.</Text>
+        </Box>
       </Box>
-    </Box>
   );
 }
 
