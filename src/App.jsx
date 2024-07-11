@@ -8,7 +8,6 @@ import BoardList from "./page/board/BoardList.jsx";
 
 const router = createBrowserRouter([
   {path: "/",
-
     children: [
       { index: true, element: <Home /> },
       {path:"write", element: < BoardWrite/>},

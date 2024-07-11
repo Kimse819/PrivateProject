@@ -28,7 +28,7 @@ export function MemberSignup() {
   const [phone, setPhone] = useState("");
   const [inserted, setInserted] = useState(new Date().toISOString());
   const [isLoading, setIsLoading] = useState(false);
-  const [isCheckedEmail, setIsCheckedEmail] = useState(false);
+  const [isCheckedEmai     , setIsCheckedEmail] = useState(false);
   const [isCheckedNickName, setIsCheckedNickName] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
 

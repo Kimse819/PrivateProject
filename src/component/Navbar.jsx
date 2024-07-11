@@ -54,7 +54,7 @@ export function Navbar() {
           인기 영화
         </Box>
         <Box
-          onClick={() => navigate("/BoardList")}
+          onClick={() => navigate("/list")}
           cursor="pointer"
           _hover={{ bgColor: "gray.600" }}
           p={2}
@@ -99,10 +99,10 @@ export function Navbar() {
           </Menu>
         ) : (
           <Flex gap={3}>
-            <Button onClick={() => navigate("/login")} colorScheme="teal">
+            <Button onClick={() => navigate("/Memberlogin")} colorScheme="teal">
               로그인
             </Button>
-            <Button onClick={() => navigate("/signup")} colorScheme="teal">
+            <Button onClick={() => navigate("/Membersignup")} colorScheme="teal">
               회원가입
             </Button>
           </Flex>
