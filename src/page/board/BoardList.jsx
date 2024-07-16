@@ -98,7 +98,7 @@ export function BoardList() {
         <Box py={8} px={4} minH="100vh" bg={bgColor}>
             <Container maxW="container.xl" bg={searchBgColor} p={6} borderRadius="md" boxShadow="lg">
                 <Heading mb={6} textAlign="center" fontSize="2xl" fontWeight="bold" color={headingColor}>
-                    게시판
+                    커뮤니티
                 </Heading>
                 <Box mb={8} bg={searchBgColor} p={4} borderRadius="md" boxShadow="sm">
                     <Flex justifyContent="space-between" alignItems="center" flexWrap="wrap">

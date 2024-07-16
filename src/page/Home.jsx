@@ -156,7 +156,6 @@ export function Home() {
 
         {/* Footer */}
         <Box as="footer" py={4} textAlign="center" bg="gray.800" color="gray.500">
-          <Text>&copy; 2024 Movie Recommendation. All rights reserved.</Text>
         </Box>
       </Box>
   );
