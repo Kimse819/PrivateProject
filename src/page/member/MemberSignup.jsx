@@ -28,7 +28,7 @@ export function MemberSignup() {
   const [phone, setPhone] = useState("");
   const [inserted, setInserted] = useState(new Date().toISOString());
   const [isLoading, setIsLoading] = useState(false);
-  const [isCheckedEmai     , setIsCheckedEmail] = useState(false);
+  const [isCheckedEmail, setIsCheckedEmail] = useState(false);
   const [isCheckedNickName, setIsCheckedNickName] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
 
@@ -49,7 +49,6 @@ export function MemberSignup() {
         inserted,
       })
       .then((res) => {
-
         toast({
           status: "success",
           description: "회원 가입이 완료되었습니다.",
@@ -96,7 +95,6 @@ export function MemberSignup() {
           });
           setIsCheckedEmail(true);
         }
-        //
       });
   }
 
@@ -139,8 +137,22 @@ export function MemberSignup() {
   );
 
   return (
-    <Center>
-      <Box w={500}>
+    <Box
+      bgImage="url('/image/image1.jpg!d')"
+      bgSize="cover"
+      bgPosition="center"
+      minH="100vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Box
+        w={600}
+        p={10}
+        borderRadius="md"
+        boxShadow="lg"
+        bg="rgba(255, 255, 255, 0.85)"
+      >
         <Center mb={10} mt={30}>
           <Heading>회원 가입</Heading>
         </Center>
@@ -267,6 +279,6 @@ export function MemberSignup() {
           </Button>
         </VStack>
       </Box>
-    </Center>
+    </Box>
   );
 }

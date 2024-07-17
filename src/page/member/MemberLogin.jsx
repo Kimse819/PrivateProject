@@ -12,7 +12,7 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../component/LoginProvider.jsx";
@@ -26,6 +26,12 @@ export function MemberLogin() {
   const navigate = useNavigate();
   const account = useContext(LoginContext);
 
+  useEffect(() => {
+    if (account && account.isLoggedIn()) {
+      navigate("/");
+    }
+  }, [account, navigate]);
+
   const handleSignup = () => {
     navigate("/signup");
   };
@@ -35,11 +41,12 @@ export function MemberLogin() {
   };
 
   function handleLogin() {
+    setIsLoading(true);
     axios
       .post("/api/member/token", { email, password })
       .then((res) => {
         account.login(res.data.token);
-
+        setIsLoading(false);
         toast({
           status: "success",
           description: "로그인 되었습니다.",
@@ -49,7 +56,7 @@ export function MemberLogin() {
       })
       .catch(() => {
         account.logout();
-
+        setIsLoading(false);
         toast({
           status: "warning",
           description: "이메일과 패스워드를 확인해주세요.",
@@ -59,27 +66,43 @@ export function MemberLogin() {
   }
 
   return (
-    <Center>
-      <Box w={500}>
+    <Box
+      bgImage="url('/image/image1.jpg!d')"
+      bgSize="cover"
+      bgPosition="center"
+      minH="100vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Box
+        w={500}
+        p={10}
+        borderRadius="md"
+        boxShadow="lg"
+        bg="black"
+      >
         <Box mb={10} mt={30}>
           <Center mb={10}>
-            <Heading>로그인</Heading>
+            <Heading color={"white"}>로그인</Heading>
           </Center>
           <VStack spacing={7}>
             <FormControl>
-              <FormLabel>이메일</FormLabel>
+              <FormLabel color={"white"}>이메일</FormLabel>
               <Input
                 type="email"
                 value={email}
+                color={"white"}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <FormControl>
-              <FormLabel>암호</FormLabel>
+              <FormLabel color={"white"}>암호</FormLabel>
               <InputGroup>
                 <Input
                   type={showPassword ? "text" : "password"}
                   value={password}
+                  color={"white"}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <InputRightElement width="4.5rem">
@@ -91,17 +114,17 @@ export function MemberLogin() {
             </FormControl>
             <Button
               onClick={handleLogin}
-              colorScheme={"blue"}
+              colorScheme={"pink"}
               isLoading={isLoading}
             >
-              Login
+              로그인
             </Button>
 
             <Flex alignItems={"center"}>
-              <Box mr={2}>아직 계정이 없으신가요?</Box>
+              <Box mr={2} color={"white"}>아직 계정이 없으신가요?</Box>
               <Button
                 onClick={handleSignup}
-                colorScheme={"blue"}
+                colorScheme={"pink"}
                 _hover={{ bg: "skyblue" }}
               >
                 회원가입
@@ -110,6 +133,6 @@ export function MemberLogin() {
           </VStack>
         </Box>
       </Box>
-    </Center>
+    </Box>
   );
 }
