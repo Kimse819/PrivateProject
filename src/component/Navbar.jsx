@@ -1,11 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { Box, Flex, Avatar, Button, Menu, MenuButton, MenuList, MenuItem, MenuDivider, Input, IconButton } from "@chakra-ui/react";
+import {
+  Box, Flex, Avatar, Button, Menu, MenuButton, MenuList, MenuItem, MenuDivider, Input, IconButton,
+  InputGroup, InputRightElement
+} from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { LoginContext } from "./LoginProvider.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 export function Navbar() {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // 임시로 로그인 상태를 관리
+  const account = useContext(LoginContext);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 임시로 로그인 상태를 관리
   const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 관리
 
   function handleSearch() {
@@ -65,7 +72,7 @@ export function Navbar() {
       </Flex>
 
       <Flex alignItems="center" gap={4}>
-        <Flex>
+        <InputGroup>
           <Input
             placeholder="검색어를 입력하세요"
             value={searchQuery}
@@ -74,13 +81,15 @@ export function Navbar() {
             color="white"
             borderRadius="md"
           />
-          <IconButton
-            icon={<SearchIcon />}
-            onClick={handleSearch}
-            colorScheme="white"
-            ml={2}
-          />
-        </Flex>
+          <InputRightElement>
+            <IconButton
+              icon={<SearchIcon />}
+              onClick={handleSearch}
+              // colorScheme="teal"
+              aria-label="Search"
+            />
+          </InputRightElement>
+        </InputGroup>
 
         {isLoggedIn ? (
           <Menu>
@@ -98,14 +107,19 @@ export function Navbar() {
             </MenuList>
           </Menu>
         ) : (
-          <Flex gap={3}>
-            <Button onClick={() => navigate("/Memberlogin")} colorScheme="teal">
-              로그인
-            </Button>
-            <Button onClick={() => navigate("/Membersignup")} colorScheme="teal">
-              회원가입
-            </Button>
-          </Flex>
+          <Menu>
+            <MenuButton as={Button} leftIcon={<FontAwesomeIcon icon={faUser} />}>
+            </MenuButton>
+            <MenuList>
+              <MenuItem onClick={() => navigate("/login")} color={"black"}>
+                로그인
+              </MenuItem>
+              <MenuDivider />
+              <MenuItem onClick={() => navigate("/signup")} color={"black"}>
+                회원가입
+              </MenuItem>
+            </MenuList>
+          </Menu>
         )}
       </Flex>
     </Flex>
