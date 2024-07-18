@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
-export const LoginContext = createContext(null);
+export const LoginContext = createContext();
 
 export function LoginProvider({ children }) {
   const [id, setId] = useState("");
