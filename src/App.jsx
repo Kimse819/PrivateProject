@@ -7,6 +7,8 @@ import {BoardWrite} from "./page/board/BoardWrite.jsx";
 import BoardList from "./page/board/BoardList.jsx";
 import {MemberSignup} from "./page/member/MemberSignup.jsx";
 import {MemberLogin} from "./page/member/MemberLogin.jsx";
+import {MemberList} from "./page/member/MemberList.jsx";
+import {MemberInfo} from "./page/member/MemberInfo.jsx";
 
 
 const router = createBrowserRouter([
@@ -17,6 +19,8 @@ const router = createBrowserRouter([
       {path:"list", element: < BoardList/>},
       {path:"signup", element: < MemberSignup/>},
       {path:"login", element: < MemberLogin/>},
+      {path:"member/list", element: < MemberList/>},
+      {path:"member/:id", element: < MemberInfo/>},
     ]},
 ])
 
