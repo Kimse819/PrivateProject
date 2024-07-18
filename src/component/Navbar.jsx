@@ -1,18 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import {
-  Box, Flex, Avatar, Button, Menu, MenuButton, MenuList, MenuItem, MenuDivider, Input, IconButton,
-  InputGroup, InputRightElement
+  Box,
+  Flex,
+  Avatar,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  Input,
+  IconButton,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import React, { useContext, useState } from "react";
 import { LoginContext } from "./LoginProvider.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export function Navbar() {
   const navigate = useNavigate();
   const account = useContext(LoginContext);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 임시로 로그인 상태를 관리
   const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 관리
 
   function handleSearch() {
@@ -38,7 +48,7 @@ export function Navbar() {
           p={2}
           borderRadius="md"
           color={"deeppink"}
-          fontSize={"23"}
+          fontSize={"40"}
         >
           Tracker
         </Box>
@@ -85,13 +95,12 @@ export function Navbar() {
             <IconButton
               icon={<SearchIcon />}
               onClick={handleSearch}
-              // colorScheme="teal"
               aria-label="Search"
             />
           </InputRightElement>
         </InputGroup>
 
-        {isLoggedIn ? (
+        {account.isLoggedIn ? (
           <Menu>
             <MenuButton as={Button} variant="link" cursor="pointer">
               <Avatar size="sm" />
@@ -101,7 +110,13 @@ export function Navbar() {
                 프로필
               </MenuItem>
               <MenuDivider />
-              <MenuItem onClick={() => { setIsLoggedIn(false); navigate("/logout"); }} color={"black"}>
+              <MenuItem
+                onClick={() => {
+                  account.logout();
+                  navigate("/login");
+                }}
+                color={"black"}
+              >
                 로그아웃
               </MenuItem>
             </MenuList>
@@ -109,6 +124,7 @@ export function Navbar() {
         ) : (
           <Menu>
             <MenuButton as={Button} leftIcon={<FontAwesomeIcon icon={faUser} />}>
+              계정
             </MenuButton>
             <MenuList>
               <MenuItem onClick={() => navigate("/login")} color={"black"}>
