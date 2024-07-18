@@ -132,6 +132,30 @@ export function Home() {
               </Slider>
             </Box>
 
+            <Box w="full">
+              <Heading as="h2" size="lg" mb={5} color="white">
+                볼 만한 영화
+              </Heading>
+              <Slider {...settings}>
+                {movies.map((movie) => (
+                  <Box key={movie.id} p={2} cursor="pointer" onClick={() => navigate(`/movie/${movie.id}`)}>
+                    <AspectRatio ratio={2 / 3}>
+                      <Image src={movie.posterUrl} alt={movie.title} objectFit="cover" borderRadius="md" />
+                    </AspectRatio>
+                    <Box mt={2} textAlign="center">
+                      <Heading as="h3" size="md" color="white">
+                        {movie.title}
+                      </Heading>
+                      <Flex justifyContent="center" alignItems="center">
+                        <FontAwesomeIcon icon={faStar} color="gold" />
+                        <Text ml={1}>{movie.rating}</Text>
+                      </Flex>
+                    </Box>
+                  </Box>
+                ))}
+              </Slider>
+            </Box>
+
             {/* Categories */}
             <Box w="full">
               <Heading as="h2" size="lg" mb={5} color="white">
