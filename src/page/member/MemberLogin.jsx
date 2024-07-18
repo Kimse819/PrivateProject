@@ -105,17 +105,17 @@ export function MemberLogin() {
             </FormControl>
             <Button
               onClick={handleLogin}
-              colorScheme={"blue"}
+              colorScheme={"pink"}
               isLoading={isLoading}
             >
-              Login
+              로그인
             </Button>
 
             <Flex alignItems={"center"}>
               <Box mr={2}>아직 계정이 없으신가요?</Box>
               <Button
                 onClick={handleSignup}
-                colorScheme={"blue"}
+                colorScheme={"pink"}
                 _hover={{ bg: "skyblue" }}
               >
                 회원가입
