@@ -103,7 +103,12 @@ export function Navbar() {
         {account.isLoggedIn ? (
           <Menu>
             <MenuButton as={Button} variant="link" cursor="pointer">
-              <Avatar size="sm" />
+              <Flex alignItems="center">
+                <Avatar size="sm" />
+                <Box ml={2} color="white">
+                  {account.nickName} {/* 닉네임 표시 */}
+                </Box>
+              </Flex>
             </MenuButton>
             <MenuList>
               <MenuItem onClick={() => navigate("/profile")} color={"black"}>
