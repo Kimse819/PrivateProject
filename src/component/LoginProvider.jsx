@@ -8,7 +8,6 @@ export function LoginProvider({ children }) {
   const [nickName, setNickName] = useState("");
   const [expired, setExpired] = useState(0);
   const [authority, setAuthority] = useState([]);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -38,7 +37,6 @@ export function LoginProvider({ children }) {
     const payload = jwtDecode(token);
     setExpired(payload.exp);
     setId(payload.sub);
-    setUser({ name: 'John Doe', email: 'johndoe@example.com', nickName: 'John' });
     setNickName(payload.nickname);
     setAuthority(payload.scope.split(" ")); // "admin manager user"
   }
@@ -47,7 +45,6 @@ export function LoginProvider({ children }) {
     localStorage.removeItem("token");
     setExpired(0);
     setId("");
-    setUser(null);
     setNickName("");
     setAuthority([]);
   }
@@ -57,7 +54,6 @@ export function LoginProvider({ children }) {
       value={{
         id: id,
         nickName: nickName,
-        user: user,
         login: login,
         logout: logout,
         isLoggedIn: isLoggedIn,
