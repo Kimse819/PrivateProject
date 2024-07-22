@@ -13,17 +13,21 @@ import {
   IconButton,
   InputGroup,
   InputRightElement,
+  Hide,
+  Show,
+  Center,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import { SearchIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import React, { useContext, useState } from "react";
 import { LoginContext } from "./LoginProvider.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faRightFromBracket, faCog, faUsers, faRightToBracket, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 export function Navbar() {
   const navigate = useNavigate();
+  const { isLoggedIn, nickName, id, logout, isAdmin } = useContext(LoginContext);
+  const [searchQuery, setSearchQuery] = useState("");
   const account = useContext(LoginContext);
-  const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 관리
 
   function handleSearch() {
     if (searchQuery.trim() !== "") {
@@ -100,47 +104,72 @@ export function Navbar() {
           </InputRightElement>
         </InputGroup>
 
-        {account.isLoggedIn ? (
+        {account.isLoggedIn() && (
           <Menu>
-            <MenuButton as={Button} variant="link" cursor="pointer">
-              <Flex alignItems="center">
-                <Avatar size="sm" />
-                <Box ml={2} color="white">
-                  {account.nickName} {/* 닉네임 표시 */}
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              <Flex gap={2}>
+                <Box
+                  onClick={() => navigate(`/member/${id}`)}
+                  cursor={"pointer"}
+                  _hover={{
+                    bgColor: "gray.200",
+                  }}
+                >
+                  <FontAwesomeIcon icon={faUser} />
+                </Box>
+                <Box>
+                  <Hide below={"lg"}>{nickName}</Hide>
                 </Box>
               </Flex>
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={() => navigate("/profile")} color={"black"}>
-                프로필
+              <MenuItem onClick={() => navigate(`/member/${id}`)}>
+                <FontAwesomeIcon icon={faCog} color={"black"}/>
+                <Box ml={2} color={"black"}>프로필</Box>
               </MenuItem>
-              <MenuDivider />
               <MenuItem
                 onClick={() => {
-                  account.logout();
+                  logout();
                   navigate("/login");
                 }}
-                color={"black"}
               >
-                로그아웃
+                <FontAwesomeIcon icon={faRightFromBracket} color={"black"}/>
+                <Box ml={2} color={"black"}>로그아웃</Box>
               </MenuItem>
+              {account.isAdmin() && (
+                <MenuItem
+                  onClick={() => navigate("/member/list")}
+                  cursor={"pointer"}
+                >
+                  <FontAwesomeIcon icon={faUsers} />
+                  <Box ml={2}>회원목록</Box>
+                </MenuItem>
+              )}
             </MenuList>
           </Menu>
-        ) : (
-          <Menu>
-            <MenuButton as={Button} leftIcon={<FontAwesomeIcon icon={faUser} />}>
-              계정
-            </MenuButton>
-            <MenuList>
-              <MenuItem onClick={() => navigate("/login")} color={"black"}>
-                로그인
-              </MenuItem>
-              <MenuDivider />
-              <MenuItem onClick={() => navigate("/signup")} color={"black"}>
-                회원가입
-              </MenuItem>
-            </MenuList>
-          </Menu>
+        )}
+
+        {!account.isLoggedIn() && (
+          <Center>
+            <Menu>
+              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                <Show below={"lg"}>
+                  <FontAwesomeIcon icon={faRightToBracket} />
+                </Show>
+                <Hide below={"lg"}>로그인</Hide>
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={() => navigate("/login")}>
+                  <FontAwesomeIcon icon={faRightToBracket} color={"black"}/>
+                  <Box ml={2} color={"black"}>로그인</Box>
+                </MenuItem>
+                <MenuItem onClick={() => navigate("/signup")}>
+                  <FontAwesomeIcon icon={faUserPlus} color={"black"}/>
+                  <Box ml={2} color={"black"}>회원가입</Box>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Center>
         )}
       </Flex>
     </Flex>
