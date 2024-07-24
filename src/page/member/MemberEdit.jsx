@@ -159,16 +159,23 @@ export function MemberEdit() {
   };
 
   return (
-    <Box py={8} px={4} minH="100vh" bg="gray.50">
+    <Box
+      py={8}
+      px={4}
+      minH="100vh"
+      bgImage="url('/image/image1.jpg!d')"
+      bgSize="cover"
+      bgPosition="center"
+    >
       <Center>
         <Box
           w={{ base: "100%", md: 500 }}
           p={8}
-          bg="white"
+          bg="rgba(255, 255, 255, 0.8)"
           boxShadow="lg"
           borderRadius="md"
         >
-          <Heading mb={6} textAlign="center" fontSize="2xl" fontWeight="bold" color={"teal"}>
+          <Heading mb={6} textAlign="center" fontSize="2xl" fontWeight="bold" >
             회원 정보 수정
           </Heading>
           <Box mb={6}>
@@ -245,8 +252,6 @@ export function MemberEdit() {
               />
             </FormControl>
           </Box>
-
-
           <Box mb={6}>
             <FormControl>
               <FormLabel fontWeight="bold">전화번호</FormLabel>

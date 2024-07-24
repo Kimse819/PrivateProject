@@ -160,6 +160,8 @@ export function Home() {
             <Box w="full">
               <Heading as="h2" size="lg" mb={5} color="white">
                 카테고리별 영화
+
+
               </Heading>
               <Flex wrap="wrap" justify="space-around">
                 <Button onClick={() => navigate("/category/action")}>액션</Button>

@@ -10,6 +10,9 @@ import {MemberLogin} from "./page/member/MemberLogin.jsx";
 import {MemberList} from "./page/member/MemberList.jsx";
 import {MemberInfo} from "./page/member/MemberInfo.jsx";
 import {MemberEdit} from "./page/member/MemberEdit.jsx";
+import {BoardEdit} from "./page/board/BoardEdit.jsx";
+import {BoardView} from "./page/board/BoardView.jsx";
+import {BoardDetail} from "./page/board/BoardDetail.jsx";
 
 
 const router = createBrowserRouter([
@@ -18,6 +21,9 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       {path:"write", element: < BoardWrite/>},
       {path:"list", element: < BoardList/>},
+      {path:"edit", element: < BoardEdit/>},
+      {path:"view", element: < BoardView/>},
+      {path:"detail", element: < BoardDetail/>},
       {path:"signup", element: < MemberSignup/>},
       {path:"login", element: < MemberLogin/>},
       {path:"member/list", element: < MemberList/>},
