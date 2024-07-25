@@ -127,7 +127,7 @@ export function MemberInfo() {
         .catch((error) => {
           toast({
             status: "error",
-            description: "프로필 사진 업데이트 중 문제가 발생하였습니다.",
+            description: "프로필 사진  업데이트 중 문제가 발생하였습니다.",
             position: "top",
           });
         });

@@ -55,8 +55,8 @@ export function Home() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToShow: 8,
+    slidesToScroll: 8,
     responsive: [
       {
         breakpoint: 1024,
@@ -160,7 +160,6 @@ export function Home() {
             <Box w="full">
               <Heading as="h2" size="lg" mb={5} color="white">
                 카테고리별 영화
-
 
               </Heading>
               <Flex wrap="wrap" justify="space-around">
