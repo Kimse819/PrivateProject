@@ -13,6 +13,8 @@ import {MemberEdit} from "./page/member/MemberEdit.jsx";
 import {BoardEdit} from "./page/board/BoardEdit.jsx";
 import {BoardView} from "./page/board/BoardView.jsx";
 import {BoardDetail} from "./page/board/BoardDetail.jsx";
+import {PopularMovies} from "./page/movie/PopularMovies .jsx";
+import {MovieDetail} from "./page/movie/MovieDetail.jsx";
 
 
 const router = createBrowserRouter([
@@ -29,6 +31,8 @@ const router = createBrowserRouter([
       {path:"member/list", element: < MemberList/>},
       {path:"member/:id", element: < MemberInfo/>},
       {path: "member/edit/:id", element: <MemberEdit /> },
+      {path: "popular", element: <PopularMovies /> },
+      {path: "movie/:id", element: <MovieDetail /> },
     ]},
 ])
 
