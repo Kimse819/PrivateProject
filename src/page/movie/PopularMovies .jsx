@@ -1,7 +1,9 @@
-import { Box, Grid, Image, Text, VStack, Spinner, Center } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import {Box, Grid, Image, Text, VStack, Spinner, Center, Flex} from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = "d2ffc44dee69cf0b426d3e6202d85a5d";  // 여기에 TMDb API 키를 입력하세요
@@ -60,7 +62,10 @@ export function PopularMovies() {
               <Box p={4}>
                 <Text fontSize="xl" fontWeight="bold">{movie.title}</Text>
                 <Text>{movie.release_date}</Text>
-                <Text>{movie.vote_average} / 10</Text>
+                <Flex align="center">
+                  <FontAwesomeIcon icon={faStar} color="gold" />
+                  <Text fontSize="lg" ml={2}>{movie.vote_average} / 10</Text>
+                </Flex>
               </Box>
             </Box>
           ))}
