@@ -11,17 +11,26 @@ const API_KEY = "d2ffc44dee69cf0b426d3e6202d85a5d";
 export function MovieDetail() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchMovieDetails = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/movie/${id}`, {
+      const movieResponse = await axios.get(`${BASE_URL}/movie/${id}`, {
         params: {
           api_key: API_KEY,
           language: 'ko-KR',
         },
       });
-      setMovie(response.data);
+
+      const imagesResponse = await axios.get(`${BASE_URL}/movie/${id}/images`, {
+        params: {
+          api_key: API_KEY,
+        },
+      });
+
+      setMovie(movieResponse.data);
+      setImages(imagesResponse.data.backdrops.slice(0, 6)); // 최대 6개의 이미지만 가져옴
       setLoading(false);
     } catch (error) {
       console.error("Error fetching movie details:", error);
@@ -78,6 +87,22 @@ export function MovieDetail() {
             <Text><strong>언어:</strong> {movie.original_language}</Text>
             <Text><strong>런타임:</strong> {movie.runtime}분</Text>
             <Text><strong>장르:</strong> {movie.genres.map(genre => genre.name).join(", ")}</Text>
+          </SimpleGrid>
+        </Box>
+        <Divider borderColor="gray.700" />
+        <Box w="full">
+          <Heading as="h2" size="lg" mb={4}>관련 이미지</Heading>
+          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4}>
+            {images.map((image, index) => (
+              <Image
+                key={index}
+                src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
+                alt={`Related Image ${index + 1}`}
+                borderRadius="md"
+                boxShadow="lg"
+                transition={"transform = 0.3"}
+                _hover={{ transform: "scale(1.05)" }}/>
+            ))}
           </SimpleGrid>
         </Box>
       </VStack>
