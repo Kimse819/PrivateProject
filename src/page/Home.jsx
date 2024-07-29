@@ -96,11 +96,25 @@ export function Home() {
         {/* Featured Movie Banner */}
         <Box mb={10} position="relative" onClick={() => navigate(`/movie/${featuredMovie.id}`)}>
           <AspectRatio ratio={16 / 9}>
-            <Image src={`https://image.tmdb.org/t/p/w500${featuredMovie.poster_path}`} alt={featuredMovie.title} objectFit="cover" borderRadius="md" />
+            <Image
+              src={`https://image.tmdb.org/t/p/original${featuredMovie.backdrop_path}`}
+              alt={featuredMovie.title}
+              objectFit="cover"
+              borderRadius="md"
+            />
           </AspectRatio>
-          <Box position="absolute" bottom="10px" left="10px" bg="rgba(0, 0, 0, 0.6)" p={4} borderRadius="md">
-            <Heading as="h1" size="xl">{featuredMovie.title}</Heading>
-            <Text mt={2}>{featuredMovie.overview}</Text>
+          <Box
+            position="absolute"
+            bottom="0"
+            left="0"
+            width="100%"
+            bg="rgba(0, 0, 0, 0.6)"
+            p={6}
+            borderRadius="md"
+            color="white"
+          >
+            <Heading as="h1" size="2xl">{featuredMovie.title}</Heading>
+            <Text mt={2} fontSize="lg" noOfLines={3}>{featuredMovie.overview}</Text>
           </Box>
         </Box>
 

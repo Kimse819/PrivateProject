@@ -141,8 +141,8 @@ export function Navbar() {
                   onClick={() => navigate("/member/list")}
                   cursor={"pointer"}
                 >
-                  <FontAwesomeIcon icon={faUsers} />
-                  <Box ml={2}>회원목록</Box>
+                  <FontAwesomeIcon icon={faUsers} color={"black"}/>
+                  <Box ml={2} color={"black"}>회원목록</Box>
                 </MenuItem>
               )}
             </MenuList>
