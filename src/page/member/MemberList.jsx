@@ -22,12 +22,17 @@ export function MemberList() {
   const toast = useToast();
 
   useEffect(() => {
-    axios
-      .get("/api/member/list")
-      .then((res) => {
-        setMemberList(res.data);
-      })
-      .catch((error) => {
+    const fetchMemberList = async () => {
+      try {
+        const token = localStorage.getItem("token"); // localStorage에서 토큰 가져오기
+        const response = await axios.get("/api/member/list", {
+          headers: {
+            Authorization: `Bearer ${token}`, // 인증 헤더에 토큰 추가
+          },
+        });
+        setMemberList(response.data);
+      } catch (error) {
+        console.error("Error fetching member list:", error);
         toast({
           title: "회원 목록 로드 오류",
           description: "회원 목록을 가져오는 중에 오류가 발생했습니다.",
@@ -35,8 +40,11 @@ export function MemberList() {
           duration: 5000,
           isClosable: true,
         });
-      });
-  }, []);
+      }
+    };
+
+    fetchMemberList();
+  }, [toast]);
 
   if (memberList.length === 0) {
     return (
@@ -47,30 +55,30 @@ export function MemberList() {
   }
 
   return (
-    <Box p={8} bg="gray.50" minH="100vh">
+    <Box p={8} bg="gray.900" color="white" minH="100vh">
       <VStack spacing={8}>
-        <Heading textAlign="center" fontSize="2xl" fontWeight="bold">
+        <Heading textAlign="center" fontSize="2xl" fontWeight="bold" color="white">
           회원 목록
         </Heading>
-        <Box overflowX="auto" w="full" bg="white" p={6} boxShadow="lg" borderRadius="md">
-          <Table variant="simple">
-            <Thead bg="gray.100">
+        <Box overflowX="auto" w="full" bg="gray.800" p={6} boxShadow="lg" borderRadius="md">
+          <Table variant="simple" colorScheme="whiteAlpha">
+            <Thead bg="gray.700">
               <Tr>
-                <Th w={20}>ID</Th>
-                <Th>이메일</Th>
-                <Th>이름</Th>
-                <Th w={"150px"}>별명</Th>
-                <Th>성별</Th>
-                <Th>생년월일</Th>
-                <Th>전화번호</Th>
-                <Th w={96}>가입일시</Th>
+                <Th w={20} color="white">ID</Th>
+                <Th color="white">이메일</Th>
+                <Th color="white">이름</Th>
+                <Th w={"150px"} color="white">별명</Th>
+                <Th color="white">성별</Th>
+                <Th color="white">생년월일</Th>
+                <Th color="white">전화번호</Th>
+                <Th w={96} color="white">가입일시</Th>
               </Tr>
             </Thead>
             <Tbody>
               {memberList.map((member) => (
                 <Tr
                   cursor="pointer"
-                  _hover={{ bg: "gray.100" }}
+                  _hover={{ bg: "gray.700" }}
                   onClick={() => navigate(`/member/${member.id}`)}
                   key={member.id}
                 >
@@ -91,4 +99,5 @@ export function MemberList() {
     </Box>
   );
 }
-//
+
+export default MemberList;
