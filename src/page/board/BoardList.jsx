@@ -109,7 +109,7 @@ export function BoardList() {
                                 width="150px"
                                 bg="gray.700"
                                 borderColor="white"
-                                color="white"
+                                color="deeppink"
                             >
                                 <option value="all">전체</option>
                                 <option value="text">제목+내용</option>
