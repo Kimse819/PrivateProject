@@ -18,6 +18,7 @@ import {
   VStack,
   Divider,
   Avatar,
+  Text,
 } from "@chakra-ui/react";
 import { useEffect, useState, useContext, useRef } from "react";
 import axios from "axios";
@@ -127,7 +128,7 @@ export function MemberInfo() {
         .catch((error) => {
           toast({
             status: "error",
-            description: "프로필 사진  업데이트 중 문제가 발생하였습니다.",
+            description: "프로필 사진 업데이트 중 문제가 발생하였습니다.",
             position: "top",
           });
         });
@@ -154,19 +155,19 @@ export function MemberInfo() {
       bgImage="url('/image/image1.jpg!d')"
       bgSize="cover"
       bgPosition="center"
+      bgAttachment="fixed"
     >
       <Center>
         <Box
           w={{ base: "100%", md: 600 }}
           p={8}
-          bg="black"
+          bg="rgba(0, 0, 0, 0.8)"
           boxShadow="xl"
           borderRadius="lg"
-          opacity={0.95}
         >
           <Center>
             <Avatar
-              size="xl"
+              size="2xl"
               src={member.profileImage}
               mb={6}
               cursor="pointer"
@@ -180,7 +181,7 @@ export function MemberInfo() {
             />
           </Center>
           <Heading mb={6} textAlign="center" fontSize="2xl" fontWeight="bold" color="white">
-            프로필
+            마이페이지
           </Heading>
           <Divider mb={6} />
           <VStack spacing={4} align="stretch">
