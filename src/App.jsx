@@ -1,6 +1,6 @@
 import React from "react";
 import {ChakraProvider} from "@chakra-ui/react";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, Outlet, RouterProvider} from "react-router-dom";
 import {LoginProvider} from "./component/LoginProvider.jsx";
 import {Home} from "./page/Home.jsx";
 import {BoardWrite} from "./page/board/BoardWrite.jsx";
@@ -17,10 +17,18 @@ import {PopularMovies} from "./page/movie/PopularMovies .jsx";
 import {MovieDetail} from "./page/movie/MovieDetail.jsx";
 import CategoryPage from "./page/category/CategoryPage.jsx";
 import {RecommendedMovies} from "./page/movie/RecommendedMovies.jsx";
+import Navbar from "./component/Navbar.jsx";
+
 
 
 const router = createBrowserRouter([
   {path: "/",
+    element: (
+      <>
+        <Navbar />
+        <Outlet />
+      </>
+    ),
     children: [
       { index: true, element: <Home /> },
       {path:"write", element: < BoardWrite/>},

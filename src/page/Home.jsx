@@ -98,7 +98,6 @@ export function Home() {
 
   return (
     <Box bg="gray.900" color="white" minH="100vh">
-      <Navbar />
       <Box p={8}>
         <Box mb={10} position="relative" onClick={() => navigate(`/movie/${featuredMovie.id}`)}>
           <AspectRatio ratio={16 / 9}>
