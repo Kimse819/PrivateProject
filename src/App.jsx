@@ -16,6 +16,7 @@ import {BoardDetail} from "./page/board/BoardDetail.jsx";
 import {PopularMovies} from "./page/movie/PopularMovies .jsx";
 import {MovieDetail} from "./page/movie/MovieDetail.jsx";
 import CategoryPage from "./page/category/CategoryPage.jsx";
+import {RecommendedMovies} from "./page/movie/RecommendedMovies.jsx";
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
       {path: "popular", element: <PopularMovies /> },
       {path: "movie/:id", element: <MovieDetail /> },
       {path: "category/:genre", element: <CategoryPage /> },
+      {path: "recommend", element: <RecommendedMovies /> },
 
     ]},
 ])
