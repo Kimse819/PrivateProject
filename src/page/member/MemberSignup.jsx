@@ -138,7 +138,7 @@ export function MemberSignup() {
 
   return (
     <Box
-      bgImage="url('/image/image1.jpg!d')"
+      bgImage="url('/image/backimage.jpg')"
       bgSize="cover"
       bgPosition="center"
       minH="100vh"

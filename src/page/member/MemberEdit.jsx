@@ -163,7 +163,7 @@ export function MemberEdit() {
       py={8}
       px={4}
       minH="100vh"
-      bgImage="url('/image/image1.jpg!d')"
+      bgImage="url('/image/backimage.jpg')"
       bgSize="cover"
       bgPosition="center"
     >
