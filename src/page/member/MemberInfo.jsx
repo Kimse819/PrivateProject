@@ -161,7 +161,7 @@ export function MemberInfo() {
         <Box
           w={{ base: "100%", md: 600 }}
           p={8}
-          bg="rgba(0, 0, 0, 0.8)"
+          bg="rgba(255, 255, 255, 0.8)"
           boxShadow="xl"
           borderRadius="lg"
         >
@@ -180,37 +180,37 @@ export function MemberInfo() {
               display="none"
             />
           </Center>
-          <Heading mb={6} textAlign="center" fontSize="2xl" fontWeight="bold" color="white">
+          <Heading mb={6} textAlign="center" fontSize="2xl" fontWeight="bold" color="black">
             마이페이지
           </Heading>
           <Divider mb={6} />
           <VStack spacing={4} align="stretch">
             <FormControl>
-              <FormLabel fontWeight="bold" color="white">아이디</FormLabel>
+              <FormLabel fontWeight="bold" color="black">아이디</FormLabel>
               <Input isReadOnly value={member.id} bg="gray.100" />
             </FormControl>
             <FormControl>
-              <FormLabel fontWeight="bold" color="white">이메일</FormLabel>
+              <FormLabel fontWeight="bold" color="black">이메일</FormLabel>
               <Input isReadOnly value={member.email} bg="gray.100" />
             </FormControl>
             <FormControl>
-              <FormLabel fontWeight="bold" color="white">이름</FormLabel>
+              <FormLabel fontWeight="bold" color="black">이름</FormLabel>
               <Input isReadOnly value={member.name} bg="gray.100" />
             </FormControl>
             <FormControl>
-              <FormLabel fontWeight="bold" color="white">별명</FormLabel>
+              <FormLabel fontWeight="bold" color="black">별명</FormLabel>
               <Input isReadOnly value={member.nickName} bg="gray.100" />
             </FormControl>
             <FormControl>
-              <FormLabel fontWeight="bold" color="white">생년월일</FormLabel>
+              <FormLabel fontWeight="bold" color="black">생년월일</FormLabel>
               <Input isReadOnly value={new Date(member.birth).toLocaleDateString()} bg="gray.100" />
             </FormControl>
             <FormControl>
-              <FormLabel fontWeight="bold" color="white">전화번호</FormLabel>
+              <FormLabel fontWeight="bold" color="black">전화번호</FormLabel>
               <Input isReadOnly value={member.phone} bg="gray.100" />
             </FormControl>
             <FormControl>
-              <FormLabel fontWeight="bold" color="white">가입일시</FormLabel>
+              <FormLabel fontWeight="bold" color="black">가입일시</FormLabel>
               <Input isReadOnly value={member.inserted} type="datetime-local" bg="gray.100" />
             </FormControl>
             {account.hasAccess(member.id) && (
