@@ -15,6 +15,8 @@ Tracker(영화 소개 사이트)
 <img width="1262" alt="Image" src="https://github.com/user-attachments/assets/47af51c7-0bda-41a0-b509-28dfee95ec15" />
 -액션영화 부분
 <img width="1258" alt="Image" src="https://github.com/user-attachments/assets/1d0784c9-4c91-4565-bd8d-d7e31d2d10c9" />
+-호러영화 부분
+<img width="1264" alt="Image" src="https://github.com/user-attachments/assets/07bdfb2c-7e92-4ac8-a63d-83801ee5496b" />
 
 
  최근 인기가 많은 영화들을 별점과 함께 분배
