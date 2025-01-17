@@ -1,5 +1,7 @@
 Tracker(영화 소개 사이트)
 
+-TMDB API를 이용해서 영화 정보를 받아와 최근 인기영화부터 고전명작까지 소개하는 사이트
+
 로그인 화면
 ![Image](https://github.com/user-attachments/assets/b8ba15c4-ad73-4ff4-9a19-853227e37c73)
 
