@@ -6,6 +6,11 @@ Tracker(영화 소개 사이트)
 회원가입 화면
 ![Image](https://github.com/user-attachments/assets/2a902848-4e3b-4653-80bf-5dcdda96b4bd)
 
+마이 페이지
+<img width="1260" alt="Image" src="https://github.com/user-attachments/assets/fb96612b-6e1f-4333-b444-3bdf70ff8a47" />
+회원 정보 수정
+![Image](https://github.com/user-attachments/assets/fb1558b9-df15-4816-acfc-6fc1527c4b8e)
+
 
 메인 화면
 <img width="1262" alt="Image" src="https://github.com/user-attachments/assets/0f089944-a0d6-4d42-8773-31adac043194" />
